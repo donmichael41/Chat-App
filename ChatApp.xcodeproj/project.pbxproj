@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0CDE801DFCF408007D2CD2 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE7F1DFCF408007D2CD2 /* ChatViewModel.swift */; };
+		0C0CDE811DFCF408007D2CD2 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE7F1DFCF408007D2CD2 /* ChatViewModel.swift */; };
+		0C0CDE821DFCF408007D2CD2 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE7F1DFCF408007D2CD2 /* ChatViewModel.swift */; };
+		0C0CDE841DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE831DFCFEE6007D2CD2 /* LoginViewController.swift */; };
+		0C0CDE851DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE831DFCFEE6007D2CD2 /* LoginViewController.swift */; };
+		0C0CDE861DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0CDE831DFCFEE6007D2CD2 /* LoginViewController.swift */; };
+		0C0CDE871DFD081F007D2CD2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FA6A61DF840DE00CB3286 /* ChatViewController.swift */; };
+		0C0CDE881DFD0820007D2CD2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FA6A61DF840DE00CB3286 /* ChatViewController.swift */; };
 		0C7FA6A51DF840DE00CB3286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FA6A41DF840DE00CB3286 /* AppDelegate.swift */; };
 		0C7FA6A71DF840DE00CB3286 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7FA6A61DF840DE00CB3286 /* ChatViewController.swift */; };
 		0C7FA6AA1DF840DE00CB3286 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C7FA6A81DF840DE00CB3286 /* Main.storyboard */; };
@@ -37,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0CDE7F1DFCF408007D2CD2 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		0C0CDE831DFCFEE6007D2CD2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0C7FA6A11DF840DE00CB3286 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C7FA6A41DF840DE00CB3286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C7FA6A61DF840DE00CB3286 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +109,7 @@
 		0C7E43F21DFC2D09007D067F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0C0CDE7F1DFCF408007D2CD2 /* ChatViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -108,6 +119,7 @@
 			children = (
 				0C7FA6AD1DF840DE00CB3286 /* LaunchScreen.storyboard */,
 				0C7FA6A81DF840DE00CB3286 /* Main.storyboard */,
+				0C0CDE831DFCFEE6007D2CD2 /* LoginViewController.swift */,
 				0C7FA6A61DF840DE00CB3286 /* ChatViewController.swift */,
 			);
 			name = Views;
@@ -482,7 +494,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0CDE841DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */,
 				0C7FA6A71DF840DE00CB3286 /* ChatViewController.swift in Sources */,
+				0C0CDE801DFCF408007D2CD2 /* ChatViewModel.swift in Sources */,
 				0C7FA6A51DF840DE00CB3286 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0CDE851DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */,
+				0C0CDE811DFCF408007D2CD2 /* ChatViewModel.swift in Sources */,
+				0C0CDE871DFD081F007D2CD2 /* ChatViewController.swift in Sources */,
 				0C7FA6BA1DF840DE00CB3286 /* ChatAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +516,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0CDE861DFCFEE6007D2CD2 /* LoginViewController.swift in Sources */,
+				0C0CDE821DFCF408007D2CD2 /* ChatViewModel.swift in Sources */,
+				0C0CDE881DFD0820007D2CD2 /* ChatViewController.swift in Sources */,
 				0C7FA6C51DF840DE00CB3286 /* ChatAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

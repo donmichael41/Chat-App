@@ -9,20 +9,25 @@
 import UIKit
 import JSQMessagesViewController
 import RxSwift
+
 class ChatViewController: JSQMessagesViewController {
  
-    var messages = [JSQMessage]()
+    var messages: [JSQMessage]!
 
     let disposeBag = DisposeBag()
+    var chatViewModel: ChatViewModel!
     
     
-    var user = BehaviorSubject(value: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        chatViewModel = ChatViewModel()
+        chatViewModel.delegate = self
+        messages = chatViewModel.messages
+        
         setUpRx()
     }
-    
+    var user = BehaviorSubject(value: "")
     func setUpRx() {
         user.distinctUntilChanged()
             .subscribe(onNext: { username in
@@ -31,13 +36,11 @@ class ChatViewController: JSQMessagesViewController {
                 print(username)
             })
             .addDisposableTo(disposeBag)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
-        displayUsernameAlert()
 
     }
     
@@ -108,12 +111,12 @@ class ChatViewController: JSQMessagesViewController {
 
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        addMessage(withId: self.senderId, name: self.senderDisplayName, text: text)
+        chatViewModel.addMessage(withId: self.senderId, name: self.senderDisplayName, text: text)
         
         let ramdom = String(arc4random())
         DispatchQueue.global().async {
             sleep(2)
-            self.addFeedBackMessages(withId: ramdom, name: "Friend of \(ramdom) say:", text: "Back: \(text!)")
+            self.chatViewModel.addFeedBackMessages(withId: ramdom, name: "Friend of \(ramdom) say:", text: "Back: \(text!)")
             DispatchQueue.main.async {
                 self.finishReceivingMessage()
             }
@@ -130,49 +133,4 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     
 }
 
-extension ChatViewController {
-    
-    func addMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
-            self.collectionView.reloadData()
-        }
-    }
-    
-    func displayUsernameAlert() {
-        let alertController = UIAlertController(title: "Login", message: "Please enter your username", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addTextField() { textField in
-            textField.placeholder = "Username"
-        }
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { _ in
-            let usernameTextfield = alertController.textFields![0] as UITextField
-            guard let username = usernameTextfield.text, username != "" else {
-                self.displayUsernameAlert()
-                return
-            }
-            
-            self.user.onNext(username)
-        }
-        
-        alertController.addAction(okAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func addFeedBackMessages(withId id: String, name: String, text: String) {
-        
-        let sender = name
-        let messageContent = text
-        addMessage(withId: sender, name: sender, text: messageContent)
-    }
-    
-    func addDemoMessages() {
-            for i in 1...10 {
-                let sender = (i%2 == 0) ? "The God" : self.senderId
-                let messageContent = "Message number. \(i)"
-                addMessage(withId: sender!, name: sender!, text: messageContent)
-            }
-            //self.collectionView.reloadData()
-    }
-}
+

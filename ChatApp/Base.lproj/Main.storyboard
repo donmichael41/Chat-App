@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VnF-zo-tC2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="EZU-Ey-09k">
+            <objects>
+                <viewController id="VnF-zo-tC2" customClass="LoginViewController" customModule="ChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z7U-L5-L1C"/>
+                        <viewControllerLayoutGuide type="bottom" id="rlY-Fb-HIw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lfa-hD-qID">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Klc-U6-Fga">
+                                <rect key="frame" x="82" y="64" width="211" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLq-qs-Qbe">
+                                <rect key="frame" x="159" y="119" width="57" height="30"/>
+                                <state key="normal" title="Go Chat"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showChat" id="t3X-N3-62r"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Klc-U6-Fga" firstAttribute="top" secondItem="Z7U-L5-L1C" secondAttribute="bottom" constant="44" id="5br-gI-jrH"/>
+                            <constraint firstItem="Klc-U6-Fga" firstAttribute="leading" secondItem="Lfa-hD-qID" secondAttribute="leadingMargin" constant="66" id="WT6-rK-Ugo"/>
+                            <constraint firstItem="Klc-U6-Fga" firstAttribute="centerX" secondItem="Lfa-hD-qID" secondAttribute="centerX" id="X9l-nF-L67"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Klc-U6-Fga" secondAttribute="trailing" constant="66" id="bOy-bb-tXL"/>
+                            <constraint firstItem="fLq-qs-Qbe" firstAttribute="centerX" secondItem="Lfa-hD-qID" secondAttribute="centerX" id="fiI-EI-w3I"/>
+                            <constraint firstItem="fLq-qs-Qbe" firstAttribute="top" secondItem="Klc-U6-Fga" secondAttribute="bottom" constant="25" id="nSd-C7-7Zw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginButton" destination="fLq-qs-Qbe" id="tID-jV-A6L"/>
+                        <outlet property="usernameTextField" destination="Klc-U6-Fga" id="9m1-3m-erA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DeN-uh-Pcs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-607.20000000000005" y="123.68815592203899"/>
+        </scene>
         <!--Chat View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -25,6 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="158" y="124"/>
         </scene>
     </scenes>
 </document>
