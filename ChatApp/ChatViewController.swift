@@ -11,8 +11,6 @@ import JSQMessagesViewController
 import RxSwift
 
 class ChatViewController: JSQMessagesViewController {
- 
-    var messages = [JSQMessage]()
 
     let disposeBag = DisposeBag()
     var chatViewModel: ChatViewModel!
@@ -45,18 +43,18 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return messages[indexPath.item]
+        return chatViewModel.messages[indexPath.item]
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return chatViewModel.messages.count
     }
     
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
+        let message = chatViewModel.messages[indexPath.item] // 1
         if message.senderId == senderId { // 2
             return outgoingBubbleImageView
         } else { // 3
@@ -73,7 +71,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString? {
-        let message = messages[indexPath.item]
+        let message = chatViewModel.messages[indexPath.item]
         switch message.senderId {
         case senderId:
             return nil
@@ -111,10 +109,16 @@ class ChatViewController: JSQMessagesViewController {
 
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        chatViewModel.addMessage(withId: self.senderId, name: self.senderDisplayName, text: text)
-        
+        chatViewModel.addMessage(withId: self.senderId, name: self.senderDisplayName, text: text) { [unowned self] (message) in
+            self.chatViewModel.messages.append(message)
+            
+            DispatchQueue.main.async {
+                self.finishReceivingMessage()
+                self.collectionView.reloadData()
+                
+            }
+        }
         self.inputToolbar.contentView.textView.text = ""
-        //self.finishReceivingMessage()
     }
     
     

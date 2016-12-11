@@ -11,37 +11,28 @@ import XCTest
 
 class ChatViewModelTest: XCTestCase {
     
-    var chatViewModel: ChatViewModel!
+    var sut: ChatViewModel!
     
     override func setUp() {
         super.setUp()
         
-        chatViewModel = ChatViewModel()
+        sut = ChatViewModel()
     }
-    
-    override func tearDown() {
-        
-        super.tearDown()
-    }
-    
+
     func test_Message_ShouldNotNill() {
         
-        XCTAssertNotNil(chatViewModel.delegate.messages)
+        XCTAssertNotNil(sut.messages)
+        
     }
     
     func test_AddMessage_ShouldSetMessage() {
         
-        chatViewModel.addMessage(withId: "1", name: "hung", text: "text")
+        let expectaion = expectation(description: "wait message")
+        sut.addMessage(withId: "1", name: "hung", text: "text") { _ in
+            expectaion.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
         
-        XCTAssertEqual(chatViewModel.delegate.messages.count, 2)
-        
-    }
-    
-    func test_AddMessage_ShouldFeedbackMessage() {
-        
-        chatViewModel.addFeedBackMessages(name: "hung", text: "text")
-        
-        XCTAssertEqual(chatViewModel.delegate.messages.count, 1)
-        
+        XCTAssertEqual(sut.messages.count, 2)
     }
 }
