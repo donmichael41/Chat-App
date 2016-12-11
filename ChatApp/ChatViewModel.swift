@@ -33,11 +33,6 @@ extension ChatViewModel {
     func addMessage(withId id: String, name: String, text: String, completion:  @escaping(_ mesage: JSQMessage) -> Void ) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             self.messages.append(message)
-            
-            DispatchQueue.main.async {
-                self.delegate.finishReceivingMessage()
-                self.delegate.collectionView.reloadData()
-            }
         }
         
         
@@ -45,7 +40,7 @@ extension ChatViewModel {
         
         let ramdom = String(arc4random())
         DispatchQueue.global().async {
-            sleep(2)
+            sleep(1)
             if let message = JSQMessage(senderId: ramdom, displayName: "Friend in \(ramdom) say:", text: "hi: \(text)")  {
                 completion(message)
             }

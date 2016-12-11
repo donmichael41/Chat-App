@@ -31,8 +31,9 @@ class ChatViewModelTest: XCTestCase {
         sut.addMessage(withId: "1", name: "hung", text: "text") { _ in
             expectaion.fulfill()
         }
+        
         waitForExpectations(timeout: 2, handler: nil)
         
-        XCTAssertEqual(sut.messages.count, 2)
+        XCTAssertEqual(sut.messages.count, 1)
     }
 }
