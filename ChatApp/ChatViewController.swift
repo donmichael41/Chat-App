@@ -12,7 +12,7 @@ import RxSwift
 
 class ChatViewController: JSQMessagesViewController {
  
-    var messages: [JSQMessage]!
+    var messages = [JSQMessage]()
 
     let disposeBag = DisposeBag()
     var chatViewModel: ChatViewModel!
@@ -23,7 +23,7 @@ class ChatViewController: JSQMessagesViewController {
         
         chatViewModel = ChatViewModel()
         chatViewModel.delegate = self
-        messages = chatViewModel.messages
+        
         
         setUpRx()
     }
@@ -113,16 +113,8 @@ class ChatViewController: JSQMessagesViewController {
         
         chatViewModel.addMessage(withId: self.senderId, name: self.senderDisplayName, text: text)
         
-        let ramdom = String(arc4random())
-        DispatchQueue.global().async {
-            sleep(2)
-            self.chatViewModel.addFeedBackMessages(withId: ramdom, name: "Friend of \(ramdom) say:", text: "Back: \(text!)")
-            DispatchQueue.main.async {
-                self.finishReceivingMessage()
-            }
-        }
-        
-        finishSendingMessage()
+        self.inputToolbar.contentView.textView.text = ""
+        //self.finishReceivingMessage()
     }
     
     

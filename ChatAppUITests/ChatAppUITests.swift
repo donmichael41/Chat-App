@@ -21,6 +21,30 @@ class ChatAppUITests: XCTestCase {
         XCUIApplication().launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        XCUIDevice.shared().orientation = .faceUp
+        XCUIDevice.shared().orientation = .faceUp
+        
+        let app = XCUIApplication()
+        let nameTextField = app.textFields["name"]
+        nameTextField.tap()
+        
+        let hKey = app.keys["h"]
+        hKey.tap()
+        nameTextField.typeText("hh")
+        hKey.tap()
+        nameTextField.typeText("hhhh")
+        app.buttons["Go Chat"].tap()
+        
+        let toolbarsQuery = app.toolbars
+        let newMessageTextView = toolbarsQuery.textViews["New Message"]
+        newMessageTextView.tap()
+        
+        let hKey2 = app.keys["H"]
+        hKey2.tap()
+        hKey2.tap()
+        app.keys["u"].tap()
+        newMessageTextView.typeText("Hubg")
+        toolbarsQuery.buttons["Send"].tap()
     }
     
     override func tearDown() {

@@ -16,14 +16,15 @@ class ChatViewModel {
     private let disposeBag = DisposeBag()
     
     var user = BehaviorSubject(value: "")
-    var messages = [JSQMessage]()
+    
     var delegate: ChatViewController!
     
     init () {
+        
         setup()
     }
     func setup() {
-        
+        // For set up RX
     }
 }
 
@@ -31,17 +32,30 @@ extension ChatViewModel {
     
     func addMessage(withId id: String, name: String, text: String) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            delegate.messages.append(message)
+            self.delegate.messages.append(message)
+            
             DispatchQueue.main.async {
+                self.delegate.finishReceivingMessage()
                 self.delegate.collectionView.reloadData()
             }
-            
         }
-    }
-    func addFeedBackMessages(withId id: String, name: String, text: String) {
         
-        let sender = name
-        let messageContent = text
-        addMessage(withId: sender, name: sender, text: messageContent)
+        addFeedBackMessages(name: name, text: text)
+    }
+    
+    func addFeedBackMessages(name: String, text: String) {
+
+        let ramdom = String(arc4random())
+        DispatchQueue.global().async {
+            sleep(2)
+            if let message = JSQMessage(senderId: ramdom, displayName: "Friend in \(ramdom) say:", text: "hi: \(text)")  {
+                self.delegate.messages.append(message)
+                DispatchQueue.main.async {
+                    self.delegate.finishReceivingMessage()
+                    self.delegate.collectionView.reloadData()
+                }
+            }
+
+        }
     }
 }
