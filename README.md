@@ -8,3 +8,8 @@ Demo as MVVM + RxSwift
 # To enable code coverage
 + Edit Scheme, in Test chosse tab Infor. Select Gather coverage data.
 + Run unit from Xcode by Cmd + u, after test finish choose report navigator, chosse lastest test then see the Coverage in the right.
+
+# To run UI test
+
++ Run unit test as normal
++ After unit test done, notice the device is runnign UI test.
